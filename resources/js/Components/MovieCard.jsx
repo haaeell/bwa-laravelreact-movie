@@ -1,9 +1,11 @@
+import { Link } from '@inertiajs/react'
 import PropTypes from 'prop-types'
 
 MovieCard.propTypes = {
     name: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string.isRequired  
+    thumbnail: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired
 }
 
 export default function MovieCard({
@@ -40,10 +42,10 @@ export default function MovieCard({
                 alt=""
             />
         </div>
-        <a
-            href={slug}
+        <Link
+            href={route('prototype.movie.show', slug)}
             className="inset-0 absolute z-50"
-        ></a>
+        ></Link>
     </div>
     )
 }
