@@ -7,7 +7,7 @@ Button.propTypes = {
     className: PropTypes.string,
     processing: PropTypes.bool,
     children: PropTypes.node,
-    variant: PropTypes.oneOf('primary', 'warning', 'danger', 'light-outline', 'white-outline'),
+    variant: PropTypes.oneOf(['primary', 'warning', 'danger', 'light-outline', 'white-outline']),
 }
 
 
