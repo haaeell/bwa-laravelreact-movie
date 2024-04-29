@@ -30,7 +30,7 @@ export default function FeaturedMovie({
                     alt=""
                 />
                 <span className="text-sm font-medium text-white mt-1">
-                    {rating}/5.0
+                    {rating}/10.0
                 </span>
             </div>
         </div>
@@ -55,7 +55,7 @@ export default function FeaturedMovie({
             </div>
         </div>
         <Link
-            href={route('prototype.movie.show', slug)}
+            href={route('user.dashboard.movie.show', slug)}
             className="inset-0 absolute z-50"
         ></Link>
     </div>
