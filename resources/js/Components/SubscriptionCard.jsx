@@ -97,7 +97,7 @@ export default function SubscriptionCard({
                 </div>
 
                 {/* <!-- Bottom: CTA Button --> */}
-                <div>
+                <div onClick={onSelectSubscription}>
                     <Button
                         variant="primary"
                         type="button"
