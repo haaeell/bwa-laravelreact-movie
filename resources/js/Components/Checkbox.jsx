@@ -1,4 +1,4 @@
-export default function Checkbox({ name,value,handleChange }) {
+export default function Checkbox({ name,value,handleChange, checked=false }) {
     return (
       <input
         type="checkbox"
@@ -7,6 +7,7 @@ export default function Checkbox({ name,value,handleChange }) {
         className={
           'rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 '
         }
+        checked={checked}
         onChange={handleChange}
       />
     );

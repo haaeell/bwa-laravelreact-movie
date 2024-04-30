@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Movie\Store;
+use App\Http\Requests\Admin\Movie\Update;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class MovieController extends Controller
 {
@@ -18,7 +20,10 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return Inertia('Admin/Movie/Index');
+        $movies = Movie::all();
+        return Inertia('Admin/Movie/Index',[
+            'movies' => $movies
+        ]);
     }
 
     /**
@@ -70,7 +75,9 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+        return Inertia('Admin/Movie/Edit', [
+            'movie' => $movie
+        ]);
     }
 
     /**
@@ -82,7 +89,21 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        $data = $request->all();
+        if($request->file('thumbnail')){
+            $data['thumbnail'] = Storage::disk('public')->put('movies', $request->file('thumbnail'));
+            Storage::disk('public)')->delete($movie->thumbnail);
+        } else{
+            $data['thumbnail'] = $movie->thumbnail;
+        }
+        
+        $movie->update($data);
+        return redirect(route('admin.dashboard.movie.index'))->with([
+            'message' => 'Movie updated successfully',
+            'type' => 'success',
+
+        ]);
+
     }
 
     /**
